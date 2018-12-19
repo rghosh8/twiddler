@@ -1,27 +1,94 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="./style.css" type="text/css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+    crossorigin="anonymous"></script>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="moment.js"></script>
   </head>
   <body>
+    
+    
+
     <script>
 
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
+        var $mainTweet = $('<div class="mainTweet"></div>')
+        $mainTweet.appendTo($body);
+        var randomUser = randomElement(users);
+        var $allTweetRandomUser = $('<div class="randomUserTweet"></div>');
+        $allTweetRandomUser.appendTo($body);
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        var loadRandomUserTweets = function(){
+          //$body.html(".mainTweet"); (Reseach)
+          //$(".tweet").replaceWith($(".randomUserTweet"));
+          for (var index = 0; index < streams.users[randomUser].length; index++ ){
+            var randomUserMessage = streams.users[randomUser][index].message;
+            var $randomUserMessage = $('<div class="random"></div>');
+            $randomUserMessage.text('@' + randomUser + ' -- ' +  randomUserMessage);
+            console.log(randomUserMessage);
+            $(".randomUserTweet").prepend($randomUserMessage);
+          }
         }
 
+        var $tweet = $('<div class="tweet"></div>');
+        var runGenerator = function(){
+         
+          //var $tweet = $('<div class="tweet"></div>');
+          for(var index = 0; index < streams.home.length; index++){
+            var tweet = streams.home[index];
+            var $tweetHeader = $('<p class = "tweetHeader"></p>');
+            var $tweetMessage = $('<p class = "tweetMessage"></p>');
+            //$tweet.text('@' + tweet.user   + ' -- ' + moment(tweet.created_at).fromNow()  + '\n'+ tweet.message);
+            $tweetHeader.text('@' + tweet.user   + ' -- ' + moment(tweet.created_at).fromNow());
+            $tweetMessage.text(tweet.message);
+            $(".tweet").prepend($tweetMessage);
+            $(".tweet").prepend($tweetHeader);
+            $(".mainTweet").prepend($tweet);
+            //index += 1;
+          }
+           // $(".randomUserTweet").replaceWith($(".tweet"));
+        }
+
+        runGenerator(); 
+
+        var $buttonAllTweets= $('<button type="button" class ="appButton" id="randomUserMessage"></button>');
+        $buttonAllTweets.text('Load All Tweets from a random user');
+        //$('body').prepend($buttonAllTweets);
+        $($buttonAllTweets).appendTo('body');
+
+        $("#randomUserMessage").click(function(){
+          loadRandomUserTweets();
+        }); 
+
+
+         
+        var $button= $('<button type="button" class ="appButton" id="newMessage"></button>');
+
+        $button.text('Load New Tweets');
+        $body.prepend($button);    
+         
+        $("#newMessage").click(function(){
+          runGenerator();
+        });   
       });
 
+      // Click all the tweets of a random user
+
+ 
+
+     
+      
+
+    
+      
+
     </script>
+
   </body>
 </html>

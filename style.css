@@ -1,0 +1,56 @@
+
+.appButton{
+	margin-top: 50px;
+}
+
+#randomUserMessage{
+	background-color: #A9DC9F;
+	color: #ffffff;
+	padding: 10px;
+	border: 5px;
+	margin: 10px;
+	border-radius: 20px;
+	margin-right: 10%;
+}
+
+
+#newMessage{
+	background-color: #A9DC9F;
+	color: #ffffff;
+	padding: 10px;
+	border: 5px;
+	margin: 10px;
+	border-radius: 20px;
+	margin-right: 10%;
+}
+
+
+
+
+
+
+.tweet, .randomUserTweet{
+	background-color: #ffffff;
+	padding: 10px;
+	padding-bottom: 50px;
+	border: 5px; 
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 10px;
+	border-bottom: 100px;
+	border-color: red;
+	border-radius: 20px;
+}
+
+
+.mainTweet{
+	/*border: 2px solid red;*/
+}
+
+body{
+	background-color: #c0deed;
+}
+
+.tweetHeader{
+	font-weight: bold;
+}
